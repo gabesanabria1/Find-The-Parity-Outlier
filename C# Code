@@ -1,0 +1,43 @@
+using System.Collections.Generic;
+using System.Linq;
+using System;
+
+public class Kata
+{
+  public static int Find(int[] integers)
+  {
+    int odds = 0; 
+    bool oddArray;
+    
+    //checks first 3 integers to find whether array is even or odd
+    for(int i = 0; i < 3; i++)
+      if(IsOdd(integers[i]))
+        odds++;
+        
+    if(odds > 1)
+      oddArray = true;
+    else
+      oddArray = false;
+    
+    //runs through until it finds an odd number if array is even
+    if(!oddArray)
+      foreach(int num in integers)
+        if(IsOdd(num))
+          return num;
+    
+    //runs through until it finds an even number if array is odd
+    if(oddArray)
+      foreach(int num in integers)
+        if(!IsOdd(num))
+          return num;
+    
+    return -1;
+  }
+  
+  public static bool IsOdd(int x){
+    
+    if(x % 2 == 1)
+      return true;
+    return false;
+  }
+}
